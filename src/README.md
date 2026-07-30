@@ -23,10 +23,12 @@ Verioke/
 │   ├── scorer.py           # Calculates score
 │   ├── utils.py            # Helper functions
 │   ├── config.py           # Constants/settings
+│   ├── gui.py           # Visual interpretation
 │   └── README.md           # Project Structure
 │
 ├── tests/
 │
+├── plan.txt
 ├── requirements.txt
 └── README.md
 ```
