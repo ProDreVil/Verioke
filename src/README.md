@@ -1,5 +1,5 @@
 ```
-verioke/
+Verioke/
 │
 ├── .venv/                  # Virtual environment
 │
