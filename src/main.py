@@ -1,15 +1,16 @@
-import numpy
-import scipy
-import librosa
-import matplotlib
-import sounddevice
-import soundfile
+import numpy as np
 
-print("NumPy:", numpy.__version__)
-print("SciPy:", scipy.__version__)
-print("Librosa:", librosa.__version__)
-print("Matplotlib:", matplotlib.__version__)
-print("SoundDevice:", sounddevice.__version__)
-print("SoundFile:", soundfile.__version__)
+from audio import load_audio
+from pitch import detect_pitch
 
-print("\nEverything works!")
+audio, sample_rate = load_audio("assets/sample/sample.wav")
+
+frequencies = detect_pitch(audio)
+
+# for i, freq in enumerate(frequencies):
+#     if not np.isnan(freq):
+#         time = i * 1024 / sample_rate
+#         print(f"{time:.2f}s - {freq:.2f} Hz - {i}")
+
+for i, freq in enumerate(frequencies[:30]):
+    print(i, freq)

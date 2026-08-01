@@ -7,11 +7,20 @@ Analyze score using Fuzzy Logic
 Songs Available (for now): Beer, Magbalik, Buwan
 
 
+> TODAY:
+
+Add Songs
+Separate vocals to music
+Connect Phone as Microphone
+Test pitch
+Find a speaker
+
+
 > ROADMAP:
 
 ✅ Environment setup
 ✅ Load audio
-Display waveform
+✅ Display waveform
 Detect pitch
 Compare reference vs. singer
 Calculate score
