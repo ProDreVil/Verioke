@@ -5,8 +5,10 @@ Verioke/
 │
 ├── assets/
 │   ├── songs/
-│   │   ├── vocals/
-│   │   └── instrumental/
+│   │   ├── cover/
+│   │   ├── instrumental/
+│   │   ├── lyrics/
+│   │   └── vocals/
 │   │
 │   └── reference/
 │       └── notes/
@@ -18,12 +20,13 @@ Verioke/
 ├── src/
 │   ├── main.py             # Entry point
 │   ├── recorder.py         # Records microphone input
-│   ├── audio-loader.py     # Loads audio files
-│   ├── pitch-detector.py   # Detects notes
+│   ├── audio.py            # Loads audio files
+│   ├── pitch.py            # Detects notes
 │   ├── scorer.py           # Calculates score
 │   ├── utils.py            # Helper functions
 │   ├── config.py           # Constants/settings
-│   ├── gui.py           # Visual interpretation
+│   ├── gui.py              # Visual interpretation
+│   ├── models.py           # Dataclasses
 │   └── README.md           # Project Structure
 │
 ├── tests/

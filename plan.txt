@@ -11,7 +11,6 @@ Songs Available (for now): Beer, Buwan, Total Eclipse of the Heart
 
 Add Songs
 Separate vocals to music
-Connect Phone as Microphone
 Test pitch
 Find a speaker
 
