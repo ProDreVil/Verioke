@@ -21,7 +21,8 @@ Find a speaker
 ✅ Environment setup
 ✅ Load audio
 ✅ Display waveform
-Detect pitch
+✅ Detect pitch
+Import Audios
 Compare reference vs. singer
 Calculate score
 Build GUI
