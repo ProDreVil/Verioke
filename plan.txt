@@ -18,9 +18,7 @@ Download assets for GUI
   - 3, 2, 1, Go
  * Overlays
   - Curtain GIF
-  - 10 Red Angry Birds Reaction Images
  * Videos (8)
-  - Telefragger
   - Subway Surfers
 Use all files
 
@@ -32,6 +30,8 @@ Use all files
 ✅ Display waveform
 ✅ Detect pitch
 ✅ Import Audios
+✅ Create reference
 Compare reference vs. singer
 Calculate score
 Build GUI
+Optimization

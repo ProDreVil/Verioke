@@ -4,7 +4,7 @@ import librosa
 import config
 from models import Note
 
-def detect_pitch(audio):
+def detect_pitch(audio) -> list:
     frequencies, _, _ = librosa.pyin(
         audio,
         fmin=librosa.note_to_hz(config.MIN_NOTE),
@@ -14,13 +14,13 @@ def detect_pitch(audio):
     )
     return frequencies
 
-def extract_notes(frequencies, sample_rate):
+def extract_notes(frequencies, sample_rate) -> list[Note]:
     notes = []
-    for frame, frequency in enumerate(frequencies):
+    for frame_index, frequency in enumerate(frequencies):
         if math.isnan(frequency):
             continue
-        time = frame * config.HOP_LENGTH / sample_rate
+        time = frame_index * config.HOP_LENGTH / sample_rate
         midi = round(librosa.hz_to_midi(frequency))
-        name = librosa.midi_to_note(midi)
-        notes.append(Note(time=time, frequency=frequency, midi=midi, name=name))
+        pitch = librosa.midi_to_note(midi)
+        notes.append(Note(time=time, frequency=frequency, midi=midi, pitch=pitch))
     return notes
