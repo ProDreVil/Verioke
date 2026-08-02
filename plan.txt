@@ -9,10 +9,20 @@ Songs Available (for now): Beer, Buwan, Total Eclipse of the Heart
 
 > TODAY:
 
-Add Songs
-Separate vocals to music
-Test pitch
 Find a speaker
+Checker
+Download assets for GUI
+ * SFX
+  - Build up music
+  - Hooray sfx
+  - 3, 2, 1, Go
+ * Overlays
+  - Curtain GIF
+  - 10 Red Angry Birds Reaction Images
+ * Videos (8)
+  - Telefragger
+  - Subway Surfers
+Use all files
 
 
 > ROADMAP:
@@ -21,7 +31,7 @@ Find a speaker
 ✅ Load audio
 ✅ Display waveform
 ✅ Detect pitch
-Import Audios
+✅ Import Audios
 Compare reference vs. singer
 Calculate score
 Build GUI
