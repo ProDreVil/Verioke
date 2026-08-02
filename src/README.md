@@ -34,7 +34,8 @@ Verioke/
 │   ├── config.py                   # Constants/settings
 │   ├── gui.py                      # Visual interpretation
 │   ├── models.py                   # Dataclasses
-│   └── README.md                   # Project Structure
+│   ├── reference.py                # Generate/load reference notes
+│   └── README.md                   # You are here
 │
 ├── tests/
 │
