@@ -22,5 +22,17 @@ def extract_notes(frequencies, sample_rate) -> list[Note]:
         time = frame_index * config.HOP_LENGTH / sample_rate
         midi = round(librosa.hz_to_midi(frequency))
         pitch = librosa.midi_to_note(midi)
-        notes.append(Note(time=time, frequency=frequency, midi=midi, pitch=pitch))
-    return notes
+        notes.append(Note(time=time, duration=0, frequency=frequency, midi=midi, pitch=pitch))
+    return merge_notes(notes)
+
+def merge_notes(notes: list[Note]) -> list[Note]:
+    if not notes:
+        return []
+    merged_notes = [notes[0]]
+    for note in notes[1:]:
+        last_note = merged_notes[-1]
+        if note.pitch == last_note.pitch:
+            last_note.duration = (note.time + note.duration) - last_note.time
+        else:
+            merged_notes.append(note)
+    return merged_notes

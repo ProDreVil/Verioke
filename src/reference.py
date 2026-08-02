@@ -31,8 +31,11 @@ def load_reference(song_folder: str | Path) -> list[Note]:
     try:
         with reference_path.open("r", encoding="utf-8") as file:
             json_notes = json.load(file)
-    except (json.JSONDecodeError, FileNotFoundError):
+            notes = [Note(**note_dict) for note_dict in json_notes]
+            return notes
+    except (json.JSONDecodeError, FileNotFoundError, TypeError):
+        print("Reference is outdated or invalid. Regenerating...")
         generate_reference(song_folder)
         with reference_path.open("r", encoding="utf-8") as file:
             json_notes = json.load(file)
-    return [Note(**note_dict) for note_dict in json_notes]
+        return [Note(**note_dict) for note_dict in json_notes]
