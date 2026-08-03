@@ -14,7 +14,6 @@ def get_reference_path(song_folder):
     return reference_path
 
 def generate_reference(song_folder: str | Path) -> None:
-    """Generate reference.json from a song's vocals.wav."""
     song_folder = Path(song_folder)
     vocals_path = song_folder / "vocals.wav"
     reference_path = song_folder / "reference.json"
