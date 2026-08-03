@@ -3,14 +3,21 @@ import config
 
 def compare_notes(reference_notes: list[Note], singer_notes: list[Note]) -> list[tuple[Note, Note]]:
     matches = []
-    for reference_note in reference_notes:
-        closest_note = None
-        closest_difference = float("inf")
-        for singer_note in singer_notes:
-            difference = abs(reference_note.time - singer_note.time)
-            if (difference < closest_difference and difference <= config.TIME_TOLERANCE):
-                closest_difference = difference
-                closest_note = singer_note
-        if closest_note is not None:
-            matches.append((reference_note, closest_note))
+    reference_index = 0
+    singer_index = 0
+    while (
+        reference_index < len(reference_notes)
+        and singer_index < len(singer_notes)
+    ):
+        reference = reference_notes[reference_index]
+        singer = singer_notes[singer_index]
+        difference = abs(reference.time - singer.time)
+        if difference <= config.TIME_TOLERANCE:
+            matches.append((reference, singer))
+            reference_index += 1
+            singer_index += 1
+        elif singer.time < reference.time:
+            singer_index += 1
+        else:
+            reference_index += 1
     return matches
