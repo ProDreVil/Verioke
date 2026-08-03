@@ -24,6 +24,7 @@ def extract_notes(frequencies, rms, sample_rate) -> list[Note]:
     for frame_index, frequency in enumerate(frequencies):
         if math.isnan(frequency):
             continue
+        frequency = float(frequency)
         time = frame_index * config.HOP_LENGTH / sample_rate
         midi = round(librosa.hz_to_midi(frequency))
         pitch = librosa.midi_to_note(midi)
