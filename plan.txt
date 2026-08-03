@@ -11,7 +11,6 @@ Implement Silence someday
 > TODAY:
 
 Find a speaker
-Checker
 Download assets for GUI
  * SFX
   - Build up music
@@ -22,7 +21,6 @@ Download assets for GUI
  * Videos (8)
   - Subway Surfers
 Use all files
-Fuzzy Logic
 
 
 > ROADMAP:
