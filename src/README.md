@@ -35,7 +35,7 @@ Verioke/
 │   ├── gui.py                      # Visual interpretation
 │   ├── models.py                   # Dataclasses
 │   ├── reference.py                # Generate/load reference notes
-│   ├── importer.py                 # Adds songs
+│   ├── importer.py                 # Adds songs (Check inside for details)
 │   └── README.md                   # You are here
 │
 ├── tests/

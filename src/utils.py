@@ -5,6 +5,6 @@ from models import Note
 
 def process_audio(audio_path: str | Path) -> list[Note]:
     audio, sample_rate = load_audio(audio_path)
-    frequencies = detect_pitch(audio)
-    notes = extract_notes(frequencies, sample_rate)
+    frequencies, rms = detect_pitch(audio)
+    notes = extract_notes(frequencies, rms, sample_rate)
     return merge_notes(notes)

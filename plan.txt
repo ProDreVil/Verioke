@@ -32,7 +32,7 @@ Use all files
 ✅ Import Audios
 ✅ Create reference
 ✅ Get user's recording
-Compare reference vs. singer
+✅ Compare reference vs. singer
 Calculate score
 Build GUI
 Optimization
