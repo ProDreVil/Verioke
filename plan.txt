@@ -34,5 +34,6 @@ Use all files
 ✅ Get user's recording
 ✅ Compare reference vs. singer
 Calculate score
+Implement Fuzzy Logic
 Build GUI
 Optimization

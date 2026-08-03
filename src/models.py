@@ -16,3 +16,7 @@ class Match:
     pitch_difference: int
     timing_difference: float
     loudness_difference: float
+    picth_score: float = 0.0
+    timing_score: float = 0.0
+    loudness_score: float = 0.0
+    note_score: float = 0.0
