@@ -5,6 +5,7 @@ Detect Pitch
 Compare to the minus 1
 Analyze score using Fuzzy Logic
 Songs Available (for now): Beer, Buwan, Total Eclipse of the Heart
+Implement Silence someday
 
 
 > TODAY:
@@ -21,6 +22,7 @@ Download assets for GUI
  * Videos (8)
   - Subway Surfers
 Use all files
+Fuzzy Logic
 
 
 > ROADMAP:
@@ -31,6 +33,7 @@ Use all files
 ✅ Detect pitch
 ✅ Import Audios
 ✅ Create reference
+Get user's recording
 Compare reference vs. singer
 Calculate score
 Build GUI
