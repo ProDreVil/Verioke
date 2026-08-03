@@ -4,7 +4,7 @@ Microphone input (Prolly using phone)
 Detect Pitch
 Compare to the minus 1
 Analyze score using Fuzzy Logic
-Songs Available (for now): Beer, Buwan, Total Eclipse of the Heart
+Songs Available (for now): Beer, Buwan, Pompeii, Total Eclipse of the Heart
 Implement Silence someday
 
 

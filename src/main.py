@@ -18,11 +18,7 @@ print(f"Matched Notes: {len(matches)}")
 #     print(f"{reference.pitch:>3} ({reference.time:.2f}s)" f" -> "f"{singer.pitch:>3} ({singer.time:.2f}s)")
 
 for reference, singer in matches:
-    print(
-        f"Ref: {reference.pitch:>3} ({reference.midi}) "
-        f"-> "
-        f"Singer: {singer.pitch:>3} ({singer.midi})"
-    )
+    print(f"Ref: {reference.pitch:>3} ({reference.midi}) -> Singer: {singer.pitch:>3} ({singer.midi})")
 
 # list_input_devices()
 
