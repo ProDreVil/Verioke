@@ -6,6 +6,7 @@ from utils import process_audio
 notes = process_audio("recordings/take1.wav")
 for note in notes[:10]:
     print(note)
+print(f"Total merged notes: {len(notes)}")
 
 # reference_notes = load_reference("assets/songs/beer")
 # # record_audio("recordings/take1.wav", 5)
