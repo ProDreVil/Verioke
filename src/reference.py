@@ -2,9 +2,8 @@ import json
 
 from pathlib import Path
 from dataclasses import asdict
-from audio import load_audio
-from pitch import detect_pitch, extract_notes
 from models import Note
+from utils import process_audio
 
 def get_reference_path(song_folder):
     song_folder = Path(song_folder)
@@ -17,9 +16,7 @@ def generate_reference(song_folder: str | Path) -> None:
     song_folder = Path(song_folder)
     vocals_path = song_folder / "vocals.wav"
     reference_path = song_folder / "reference.json"
-    audio, sample_rate = load_audio(vocals_path)
-    frequencies = detect_pitch(audio)
-    notes = extract_notes(frequencies, sample_rate)
+    notes = process_audio(vocals_path)
     json_notes = [asdict(note) for note in notes]
     with reference_path.open("w", encoding="utf-8") as file:
         json.dump(json_notes, file, indent=4)

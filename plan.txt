@@ -33,7 +33,7 @@ Fuzzy Logic
 ✅ Detect pitch
 ✅ Import Audios
 ✅ Create reference
-Get user's recording
+✅ Get user's recording
 Compare reference vs. singer
 Calculate score
 Build GUI
