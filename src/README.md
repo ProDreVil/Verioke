@@ -31,14 +31,14 @@ Verioke/
 │   ├── main.py                     # Entry point
 │   │
 │   ├── core/
-│   │   ├── fuzzy.py                # Handles the fuzzy logic
-│   │   ├── karaoke.py              # Processes the karaoke
+│   │   ├── fuzzy.py                # Fuzzy scoring logic
+│   │   ├── karaoke.py              # Main karaoke workflow
 │   │   ├── models.py               # Dataclasses
 │   │   └── scorer.py               # Calculates score
 │   │
 │   ├── interface/
 │   │   ├── gui.py                  # Visual interpretation
-│   │   └── report.py               # Printing and basic TUI
+│   │   └── report.py               # Console reports
 │   │
 │   ├── songs/
 │   │   ├── importer.py             # Adds songs
@@ -46,7 +46,7 @@ Verioke/
 │   │
 │   ├── sound/
 │   │   ├── audio.py                # Loads audio files
-│   │   ├── pitch.py                # Detects notes
+│   │   ├── pitch.py                # Detects notes/pitch
 │   │   └── recorder.py             # Records microphone input
 │   │
 │   ├── test/
