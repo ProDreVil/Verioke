@@ -18,6 +18,7 @@ assets/songs/*/reference.json
 
 assets/tests/*
 !assets/tests/sample/*
+!assets/tests/sample/.gitkeep
 
 assets/ui/backgrounds/*
 !assets/ui/backgrounds/.gitkeep
