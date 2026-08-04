@@ -35,6 +35,10 @@ Finish GUI
 🔵 GUI run_karaoke() integration
 🔵 Animations and polish
 
+Spinning Disc of Emojis
+Minimized
+Need Icons
+
 > ROADMAP:
 
 ✅ Environment setup
