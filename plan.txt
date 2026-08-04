@@ -26,6 +26,15 @@ Fuzzy Logic
 Update importer
 Finish GUI
 
+🟢 Screen navigation
+🟢 Home screen (song selection)
+🟢 Results screen
+🟡 Recording screen
+🟡 Audio visualizer
+🟡 Background video integration
+🔵 GUI run_karaoke() integration
+🔵 Animations and polish
+
 > ROADMAP:
 
 ✅ Environment setup

@@ -6,15 +6,15 @@ Verioke/
 │
 ├── assets/
 │   ├── grade/
-│   │   └── 1~10.jpg                # Score
+│   │   └── 1~10.jpg                # Rating
 │   │
 │   ├── songs/
 │   │   ├── Song Name/
-│   │   │   ├── cover.jpg
-│   │   │   ├── instrumental.wav
-│   │   │   ├── lyrics.lrc
-│   │   │   ├── reference.json
-│   │   │   └── vocals.wav
+│   │   │   ├── cover.jpg           # Cover photo
+│   │   │   ├── instrumental.wav    # Background music
+│   │   │   ├── lyrics.lrc          # Lyrics duh
+│   │   │   ├── reference.json      # Stores necessary values for computation
+│   │   │   └── vocals.wav          # Is compared to the user's performance
 │   │   │
 │   │   └── Another Song/
 │   │       ├── cover.jpg
@@ -26,7 +26,7 @@ Verioke/
 │   ├── tests/
 │   │
 │   └── videos/
-│       └── video.mp3               # Background videos playing
+│       └── video.mp4               # Background videos playing
 │
 │
 ├── recordings/
