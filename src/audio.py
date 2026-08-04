@@ -1,6 +1,7 @@
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 def load_audio(file_path):
     audio, sample_rate = librosa.load(file_path, sr=None)
@@ -9,6 +10,10 @@ def load_audio(file_path):
     print(f"Duration: {librosa.get_duration(y=audio, sr=sample_rate):.2f} seconds")
     print(f"Total Samples: {len(audio)}")
     return audio, sample_rate
+
+def get_audio_duration(audio_path: str | Path) -> float:
+    audio, sample_rate = librosa.load(audio_path, sr=None)
+    return librosa.get_duration(y=audio, sr=sample_rate)
 
 def plot_waveform(audio, sample_rate):
     plt.figure(figsize=(12, 4))

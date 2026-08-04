@@ -8,3 +8,13 @@ def process_audio(audio_path: str | Path) -> list[Note]:
     frequencies, rms = detect_pitch(audio)
     notes = extract_notes(frequencies, rms, sample_rate)
     return merge_notes(notes)
+
+def get_recording_path(song_name: str) -> Path:
+    recordings = Path("recordings")
+    recordings.mkdir(exist_ok=True)
+    number = 1
+    while True:
+        path = recordings / f"{song_name}-take{number}.wav"
+        if not path.exists():
+            return path
+        number += 1

@@ -1,14 +1,18 @@
 from pathlib import Path
 from reference import load_reference
 from recorder import record_audio
-from utils import process_audio
+from audio import get_audio_duration
+from utils import process_audio, get_recording_path
 from scorer import compare_notes, calculate_final_score
 from report import print_report
 
-def run_karaoke(song_folder: str | Path, duration: int) -> float:
+def run_karaoke(song_folder: str | Path) -> float:
     song_folder = Path(song_folder)
+    song_name = song_folder.name
+    instrumental_path = song_folder / "instrumental.wav"
+    duration = get_audio_duration(instrumental_path)
     reference_notes = load_reference(song_folder)
-    recording_path = Path("recordings/take1.wav")
+    recording_path = get_recording_path(song_name)
     record_audio(recording_path, duration)
     singer_notes = process_audio(recording_path)
     matches = compare_notes(reference_notes, singer_notes)

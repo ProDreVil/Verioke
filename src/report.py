@@ -20,8 +20,8 @@ def print_report(reference_notes: list[Note], singer_notes: list[Note], matches:
     print(f"Reference Notes: {len(reference_notes)}")
     print(f"Singer Notes: {len(singer_notes)}")
     print(f"Matched Notes: {len(matches)}")
-    print(f"Final Score: {calculate_final_score(matches):.2f}")
     print(f"\nDetected {len(singer_notes)} notes.")
 
 # If it detected 0 notes, check which microphone your device is using.
 # Might as well check config.py and set the INPUT_DEVICE to 0 (default device mic)
+# Will overhaul the way the system takes the INPUT_DEVICE... if I remember tho
