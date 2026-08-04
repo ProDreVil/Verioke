@@ -5,23 +5,28 @@ Verioke/
 │
 │
 ├── assets/
-│   ├── sample/
-│   │   └── sample.wav/
+│   ├── grade/
+│   │   └── 1~10.jpg                # Score
 │   │
-│   └── songs/
-│       ├── Song Name/
-│       │   ├── cover.jpg
-│       │   ├── instrumental.wav
-│       │   ├── lyrics.lrc
-│       │   ├── reference.json
-│       │   └── vocals.wav
-│       │
-│       └── Another Song/
-│           ├── cover.jpg
-│           ├── instrumental.wav
-│           ├── lyrics.lrc
-│           ├── reference.json
-│           └── vocals.wav
+│   ├── songs/
+│   │   ├── Song Name/
+│   │   │   ├── cover.jpg
+│   │   │   ├── instrumental.wav
+│   │   │   ├── lyrics.lrc
+│   │   │   ├── reference.json
+│   │   │   └── vocals.wav
+│   │   │
+│   │   └── Another Song/
+│   │       ├── cover.jpg
+│   │       ├── instrumental.wav
+│   │       ├── lyrics.lrc
+│   │       ├── reference.json
+│   │       └── vocals.wav
+│   │
+│   ├── tests/
+│   │
+│   └── videos/
+│       └── video.mp3               # Background videos playing
 │
 │
 ├── recordings/
