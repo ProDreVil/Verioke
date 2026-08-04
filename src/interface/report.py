@@ -1,5 +1,5 @@
-from scorer import *
-from models import Match, Note
+from core.scorer import *
+from core.models import Match, Note
 
 def print_report(reference_notes: list[Note], singer_notes: list[Note], matches: list[Match]) -> None:
     for match in matches:

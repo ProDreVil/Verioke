@@ -1,8 +1,8 @@
 import math
 import librosa
 
-import config
-from models import Note
+import utils.config as config
+from core.models import Note
 
 def detect_pitch(audio) -> list:
     frequencies, _, _ = librosa.pyin(

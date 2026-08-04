@@ -3,6 +3,7 @@ Verioke/
 │
 ├── .venv/                          # Virtual environment
 │
+│
 ├── assets/
 │   ├── sample/
 │   │   └── sample.wav/
@@ -22,25 +23,45 @@ Verioke/
 │           ├── reference.json
 │           └── vocals.wav
 │
+│
 ├── recordings/
+│
 │
 ├── src/
 │   ├── main.py                     # Entry point
-│   ├── recorder.py                 # Records microphone input
-│   ├── audio.py                    # Loads audio files
-│   ├── pitch.py                    # Detects notes
-│   ├── scorer.py                   # Calculates score
-│   ├── utils.py                    # Helper functions
-│   ├── config.py                   # Constants/settings
-│   ├── gui.py                      # Visual interpretation
-│   ├── models.py                   # Dataclasses
-│   ├── reference.py                # Generate/load reference notes
-│   ├── importer.py                 # Adds songs (Check inside for details)
+│   │
+│   ├── core/
+│   │   ├── fuzzy.py                # Handles the fuzzy logic
+│   │   ├── karaoke.py              # Processes the karaoke
+│   │   ├── models.py               # Dataclasses
+│   │   └── scorer.py               # Calculates score
+│   │
+│   ├── interface/
+│   │   ├── gui.py                  # Visual interpretation
+│   │   └── report.py               # Printing and basic TUI
+│   │
+│   ├── songs/
+│   │   ├── importer.py             # Adds songs
+│   │   └── reference.py            # Generate/load reference notes
+│   │
+│   ├── sound/
+│   │   ├── audio.py                # Loads audio files
+│   │   ├── pitch.py                # Detects notes
+│   │   └── recorder.py             # Records microphone input
+│   │
+│   ├── test/
+│   │   └── test.py                 # Code stash
+│   │
+│   ├── utils/
+│   │   ├── config.py               # Constants/settings
+│   │   └── helpers.py              # Helper functions
+│   │
 │   └── README.md                   # You are here
 │
-├── tests/
 │
 ├── plan.txt
+│
 ├── requirements.txt
+│
 └── README.md
 ```

@@ -1,4 +1,4 @@
-from reference import load_reference
+from songs.reference import load_reference
 
 reference_notes = load_reference("assets/songs/") # Add the song folder here (ex. assets/songs/beer)
 

@@ -2,8 +2,8 @@ import json
 
 from pathlib import Path
 from dataclasses import asdict
-from models import Note
-from utils import process_audio
+from core.models import Note
+from utils.helpers import process_audio
 
 def get_reference_path(song_folder):
     song_folder = Path(song_folder)

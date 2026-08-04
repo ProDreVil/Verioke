@@ -1,5 +1,5 @@
-from models import Match, Note
-import config
+from core.models import Match, Note
+import utils.config as config
 
 def compare_notes(reference_notes: list[Note], singer_notes: list[Note]) -> list[Match]:
     matches = []

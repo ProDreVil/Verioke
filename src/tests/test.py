@@ -1,7 +1,7 @@
-from reference import load_reference
-from recorder import record_audio, list_input_devices
-from scorer import *
-from utils import process_audio
+from songs.reference import load_reference
+# from recorder import record_audio, list_input_devices
+from core.scorer import *
+from utils.helpers import process_audio
 
 # notes = process_audio("recordings/take1.wav")
 # for note in notes[:10]:

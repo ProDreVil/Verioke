@@ -1,4 +1,4 @@
-from karaoke import run_karaoke
+from core.karaoke import run_karaoke
 
 def main():
     score = run_karaoke("assets/songs/sample")

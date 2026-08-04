@@ -2,7 +2,7 @@ import sounddevice as sd
 import soundfile as sf
 import numpy as np
 
-import config
+import utils.config as config
 
 def record_audio(output_path: str, duration: float):
     print("Recording...")

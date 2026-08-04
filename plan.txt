@@ -20,7 +20,6 @@ Download assets for GUI
   - Curtain GIF
  * Videos (8)
   - Subway Surfers
-Automation
 Minimal GUI
 Fuzzy Logic
 Organize Folders
@@ -39,6 +38,6 @@ Finish GUI
 ✅ Get user's recording
 ✅ Compare reference vs. singer
 ✅ Calculate score
-Implement Fuzzy Logic
 Build GUI
+Implement Fuzzy Logic
 Optimization
