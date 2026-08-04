@@ -16,6 +16,9 @@ assets/songs/*/vocals.wav
 assets/songs/*/lyrics.lrc
 assets/songs/*/reference.json
 
+assets/tests/*
+!assets/tests/sample/*
+
 assets/ui/backgrounds/*
 !assets/ui/backgrounds/.gitkeep
 assets/ui/gifs/*
