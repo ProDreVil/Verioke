@@ -1,7 +1,7 @@
 from core.karaoke import run_karaoke
 
 def main():
-    score = run_karaoke("assets/songs/sample")
+    score = run_karaoke("assets/songs/buwan")
     print(f"\nFinal Song Score: {score:.2f}")
 
 if __name__ == "__main__":

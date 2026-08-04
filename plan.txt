@@ -22,7 +22,6 @@ Download assets for GUI
   - Subway Surfers
 Minimal GUI
 Fuzzy Logic
-Organize Folders
 
 Update importer
 Finish GUI
