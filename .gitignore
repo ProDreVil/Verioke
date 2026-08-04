@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+.vscode/
+.idea/
+
+# .DS_Store
+# Thumbs.db
+
+recordings/
+
+assets/songs/*/cover.jpg
+assets/songs/*/instrumental.wav
+assets/songs/*/vocals.wav
+assets/songs/*/lyrics.lrc
+assets/songs/*/reference.json
+
+assets/ui/backgrounds/
