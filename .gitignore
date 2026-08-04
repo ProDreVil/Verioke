@@ -17,7 +17,12 @@ assets/songs/*/lyrics.lrc
 assets/songs/*/reference.json
 
 assets/ui/backgrounds/*
+!assets/ui/backgrounds/.gitkeep
 assets/ui/gifs/*
+!assets/ui/gifs/.gitkeep
 assets/ui/grades/*
+!assets/ui/grades/.gitkeep
 assets/ui/icons/*
+!assets/ui/icons/.gitkeep
 assets/ui/sfx/*
+!assets/ui/sfx/.gitkeep
