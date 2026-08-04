@@ -16,4 +16,8 @@ assets/songs/*/vocals.wav
 assets/songs/*/lyrics.lrc
 assets/songs/*/reference.json
 
-assets/ui/backgrounds/
+assets/ui/backgrounds/*
+assets/ui/gifs/*
+assets/ui/grades/*
+assets/ui/icons/*
+assets/ui/sfx/*
