@@ -20,8 +20,13 @@ Download assets for GUI
   - Curtain GIF
  * Videos (8)
   - Subway Surfers
-Use all files
+Automation
+Minimal GUI
+Fuzzy Logic
+Organize Folders
 
+Update importer
+Finish GUI
 
 > ROADMAP:
 
@@ -33,7 +38,7 @@ Use all files
 ✅ Create reference
 ✅ Get user's recording
 ✅ Compare reference vs. singer
-Calculate score
+✅ Calculate score
 Implement Fuzzy Logic
 Build GUI
 Optimization
