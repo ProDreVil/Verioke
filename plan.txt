@@ -10,14 +10,10 @@ Implement Silence someday
 
 > TODAY:
 
-Find a speaker
 Download assets for GUI
  * SFX
   - Build up music
-  - Hooray sfx
   - 3, 2, 1, Go
- * Overlays
-  - Curtain GIF
  * Videos (8)
   - Subway Surfers
 Minimal GUI
@@ -36,8 +32,16 @@ Finish GUI
 🔵 Animations and polish
 
 Spinning Disc of Emojis
+Waveform & Progress
 Minimized
 Need Icons
+Song selection
+Song plays while active
+Grading (and how to hide the delay)
+Curtain + fade out + freeze
+Background play speed based on song bpm
+Lyric Sync
+Fuzzy Logic Table
 
 > ROADMAP:
 

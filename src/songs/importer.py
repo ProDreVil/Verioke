@@ -1,9 +1,14 @@
 from songs.reference import load_reference
 
-reference_notes = load_reference("assets/songs/") # Add the song folder here (ex. assets/songs/beer)
+def get_reference():
+    load_reference("assets/songs/") # Add the song folder here (ex. assets/songs/beer)
 
-# What you need is an instrumental and vocal wav file of the song
-# Also you need a cover.jpg and an empty (or just don't make one) reference.json file
+# Basically, what you need are...
+# - vocals.wav
+# - instrumental.wav
+# - cover.jpg
+# - reference.json (can be empty or omitted)
+
 # Take note that the names and extensions should be exactly as above
 # The process might take a while, considering the length of the song
 
@@ -15,3 +20,5 @@ reference_notes = load_reference("assets/songs/") # Add the song folder here (ex
 #         ├── instrumental.wav
 #         ├── cover.jpg
 #         └── reference.json
+
+# I'll fix you soon

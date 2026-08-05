@@ -6,19 +6,14 @@ from interface.screens.performance import PerformanceScreen
 from interface.screens.results import ResultScreen
 
 class Verioke(CTk):
-
     def __init__(self):
         super().__init__()
-
         self.title("Verioke")
         self.geometry("1280x720")
         self.attributes("-fullscreen", False)
-        self.iconbitmap("assets/ui/logo.ico")
-
+        self.iconbitmap("assets/ui/favicon.ico")
         self.current_screen = None
-
         self.show_home()
-
     def change_screen(self, screen):
         if self.current_screen:
             self.current_screen.destroy()

@@ -6,7 +6,7 @@ Verioke/
 │
 ├── assets/
 │   ├── grade/
-│   │   └── 1~10.jpg                # Rating
+│   │   └── grade.jpg               # Rating
 │   │
 │   ├── songs/
 │   │   ├── Song Name/
@@ -42,8 +42,23 @@ Verioke/
 │   │   └── scorer.py               # Calculates score
 │   │
 │   ├── interface/
-│   │   ├── gui.py                  # Visual interpretation
-│   │   └── report.py               # Console reports
+│   │   ├── screens/
+│   │   │   ├── countdown.py        # Counts down
+│   │   │   ├── home.py             # Shows available songs
+│   │   │   ├── performance.py      # Actual singing
+│   │   │   └── results.py          # Results display
+│   │   │
+│   │   ├── widgets/
+│   │   │   ├── background.py       # Background video playing
+│   │   │   ├── progressbar.py      # Progress bar
+│   │   │   ├── songcard.py         # Song card
+│   │   │   ├── videoplayer.py      # Video player
+│   │   │   └── visualizer.py       # visualizer
+│   │   │
+│   │   ├── gui.py                  # Controls the screen switching
+│   │   ├── report.py               # Console reports
+│   │   ├── sfx.py                  # Sound effects
+│   │   └── themes.py               # Global themes
 │   │
 │   ├── songs/
 │   │   ├── importer.py             # Adds songs
@@ -55,6 +70,7 @@ Verioke/
 │   │   └── recorder.py             # Records microphone input
 │   │
 │   ├── test/
+│   │   ├── checker.py              # Checks whether wavs files are valid
 │   │   └── test.py                 # Code stash
 │   │
 │   ├── utils/

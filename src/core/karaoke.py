@@ -17,4 +17,5 @@ def run_karaoke(song_folder: str | Path) -> float:
     singer_notes = process_audio(recording_path)
     matches = compare_notes(reference_notes, singer_notes)
     print_report(reference_notes, singer_notes, matches)
-    return calculate_final_score(matches)
+    final_score = calculate_final_score(matches)
+    return {"score": final_score, "matches": matches, "reference_notes": reference_notes, "singer_notes": singer_notes}
