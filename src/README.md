@@ -43,7 +43,6 @@ Verioke/
 │   │
 │   ├── interface/
 │   │   ├── screens/
-│   │   │   ├── countdown.py        # Counts down
 │   │   │   ├── home.py             # Shows available songs
 │   │   │   ├── performance.py      # Actual singing
 │   │   │   └── results.py          # Results display

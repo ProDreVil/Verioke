@@ -68,15 +68,23 @@ class HomeScreen(ctk.CTkFrame):
         self.duration_label.pack(pady=(10, 25))
         self.sing_button = ctk.CTkButton(
             self.right_frame,
-            text="🎤 SING!",
+            text="SING!",
             width=250,
             height=60,
             font=theme.HEADING_FONT,
             state="disabled",
-            fg_color="#3A3A3A",
-            hover=False
+            fg_color=theme.SECONDARY,
+            hover_color=theme.ACCENT,
+            text_color="black",
+            hover=False,
+            command=self.start_song
         )
         self.sing_button.pack()
+
+    def start_song(self):
+        if self.selected_song is None:
+            return
+        self.master.show_performance(self.selected_song)
 
     def create_bottom(self):
         mic = ctk.CTkLabel(
