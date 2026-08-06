@@ -5,20 +5,17 @@ __pycache__/
 .vscode/
 .idea/
 
-# .DS_Store
-# Thumbs.db
-
-recordings/
+recordings/*
 
 assets/songs/*/cover.jpg
 assets/songs/*/instrumental.wav
 assets/songs/*/vocals.wav
 assets/songs/*/lyrics.lrc
 assets/songs/*/reference.json
+!assets/songs/sample/*
+!assets/songs/sample/.gitkeep
 
 assets/tests/*
-!assets/tests/sample/*
-!assets/tests/sample/.gitkeep
 
 assets/ui/backgrounds/*
 !assets/ui/backgrounds/.gitkeep

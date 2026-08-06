@@ -58,7 +58,7 @@ Verioke/
 │   │   ├── gui.py                  # Controls the screen switching
 │   │   ├── report.py               # Console reports
 │   │   ├── sfx.py                  # Sound effects
-│   │   └── themes.py               # Global themes
+│   │   └── theme.py                # Global themes
 │   │
 │   ├── songs/
 │   │   ├── importer.py             # Adds songs

@@ -14,6 +14,7 @@ Download assets for GUI
  * SFX
   - Build up music
   - 3, 2, 1, Go
+  - Geometry Dash Play
  * Videos (8)
   - Subway Surfers
 Minimal GUI
@@ -36,7 +37,7 @@ Waveform & Progress
 Minimized
 Need Icons
 Song selection
-Song plays while active
+Song plays while active/hover
 Grading (and how to hide the delay)
 Curtain + fade out + freeze
 Background play speed based on song bpm

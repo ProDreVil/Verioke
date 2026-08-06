@@ -1,0 +1,39 @@
+import customtkinter as ctk
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("green")
+
+# Window
+
+WINDOW_TITLE = "Verioke"
+WINDOW_WIDTH = 1280
+WINDOW_HEIGHT = 720
+MIN_WIDTH = 1000
+MIN_HEIGHT = 600
+
+# Fonts
+
+FONT_FAMILY = "Comic Sans MS"
+TITLE_FONT = (FONT_FAMILY, 42, "bold")
+HEADING_FONT = (FONT_FAMILY, 30, "bold")
+BODY_FONT = (FONT_FAMILY, 22)
+SMALL_FONT = (FONT_FAMILY, 16)
+
+# Colors
+
+BACKGROUND = "#101010"
+PANEL = "#1B1B1B"
+PRIMARY = "#00D8FF"
+SECONDARY = "#303030"
+TEXT = "#FFFFFF"
+TEXT_SECONDARY = "#BFBFBF"
+SUCCESS = "#43D66D"
+WARNING = "#FFC857"
+ERROR = "#FF5555"
+
+# Layout
+
+LEFT_PANEL_WIDTH = 300
+BOTTOM_BAR_HEIGHT = 70
+CORNER_RADIUS = 15
+PADDING = 15

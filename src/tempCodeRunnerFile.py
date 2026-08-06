@@ -1,0 +1,2 @@
+app = Verioke()
+app.mainloop()
