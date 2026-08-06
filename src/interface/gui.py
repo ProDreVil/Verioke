@@ -11,6 +11,12 @@ class Verioke(ctk.CTk):
         super().__init__()
         self.title(theme.WINDOW_TITLE)
         self.geometry(f"{theme.WINDOW_WIDTH}x{theme.WINDOW_HEIGHT}")
+        self.update_idletasks()
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (screen_width - theme.WINDOW_WIDTH) // 2
+        y = (screen_height - theme.WINDOW_HEIGHT) // 2
+        self.geometry(f"{theme.WINDOW_WIDTH}x{theme.WINDOW_HEIGHT}+{x}+{y}")
         self.minsize(theme.MIN_WIDTH, theme.MIN_HEIGHT)
         self.configure(fg_color=theme.BACKGROUND)
         self.attributes("-fullscreen", False)

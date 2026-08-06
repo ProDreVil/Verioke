@@ -50,7 +50,7 @@ Verioke/
 │   │   │
 │   │   ├── widgets/
 │   │   │   ├── background.py       # Background video playing
-│   │   │   ├── progressbar.py      # Progress bar
+│   │   │   ├── progress.py         # Progress bar
 │   │   │   ├── songcard.py         # Song card
 │   │   │   ├── videoplayer.py      # Video player
 │   │   │   └── visualizer.py       # visualizer
