@@ -25,7 +25,9 @@ class HomeScreen(ctk.CTkFrame):
         self.create_bottom()
 
     def create_left(self):
-        title = ctk.CTkLabel(self.left_frame, text="Select a Song", font=theme.TITLE_FONT)
+        self.song_panel = ctk.CTkFrame(self.left_frame, fg_color=theme.PANEL)
+        self.song_panel.pack(fill="both", expand=False)
+        title = ctk.CTkLabel(self.song_panel, text="Select a Song", font=theme.TITLE_FONT, text_color=theme.PRIMARY)
         title.pack(pady=(20, 30))
         self.song_container = ctk.CTkFrame(self.left_frame, fg_color="transparent")
         self.song_container.pack(fill="both", expand=True)
@@ -87,15 +89,24 @@ class HomeScreen(ctk.CTkFrame):
         self.master.show_performance(self.selected_song)
 
     def create_bottom(self):
+        # self.bottom_frame = ctk.CTkFrame(
+        #     self,
+        #     fg_color=theme.PANEL,
+        #     height=theme.BOTTOM_BAR_HEIGHT,
+        #     corner_radius=0
+        # )
+        # self.bottom_frame.pack(side="bottom", fill="x")
+        # self.bottom_frame.pack_propagate(False)
         mic = ctk.CTkLabel(
             self.bottom_frame,
-            text="🎙 AudioRelay Virtual Mic",
+            text="Input: AudioRelay Virtual Mic",
             font=theme.SMALL_FONT
         )
         mic.pack(side="left", padx=30)
         waveform = ctk.CTkLabel(
             self.bottom_frame,
             text="▁▂▃▄▅▆▇█▇▆▅▄▃▂▁",
-            font=("Consolas", 20)
+            font=("Consolas", 20),
+            text_color=theme.INFO
         )
         waveform.pack(side="right", padx=30)
