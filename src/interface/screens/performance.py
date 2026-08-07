@@ -5,6 +5,7 @@ from interface import theme
 from sound.player import AudioPlayer
 from sound.recorder import record_audio
 from sound.audio import get_audio_duration
+from core.pipeline import process_recording
 from threading import Thread
 from pathlib import Path
 from utils.helpers import get_recording_path
@@ -78,7 +79,8 @@ class PerformanceScreen(ctk.CTkFrame):
         if progress < 1:
             self.after(50, self.update_progress)
         else:
-            self.master.show_results()
+            self.meter.stop()
+            self.finish_song()
 
     def update_waveform(self):
         self.waveform.configure(text=self.master.input_meter.get_wave())
@@ -99,7 +101,7 @@ class PerformanceScreen(ctk.CTkFrame):
             self.stage,
             text="Beer - Itchyworms",
             font=theme.HEADING_FONT,
-            text_color=theme.ACCENT
+            text_color=theme.PRIMARY
         )
         self.song_title.place(relx=0.05, rely=0.05, anchor="w")
         self.recording = ctk.CTkLabel(
@@ -152,3 +154,8 @@ class PerformanceScreen(ctk.CTkFrame):
             text_color=theme.INFO
         )
         self.waveform.place(relx=0.5, rely=0.93, anchor="center")
+
+    def finish_song(self):
+        recording = get_recording_path(self.song)
+        score = 0
+        self.master.show_results(score)

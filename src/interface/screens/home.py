@@ -8,6 +8,7 @@ from pathlib import Path
 from interface import theme
 from interface.widgets.songcard import SongCard
 from utils.waveform import level_to_bar
+from utils.audiodevices import get_input_device_name
 
 class HomeScreen(ctk.CTkFrame):
     def __init__(self, master):
@@ -118,7 +119,7 @@ class HomeScreen(ctk.CTkFrame):
         self.master.show_performance(self.selected_song.title)
 
     def create_bottom(self):
-        mic = ctk.CTkLabel(self.bottom_frame, text="Input: AudioRelay Virtual Mic", font=theme.SMALL_FONT)
+        mic = ctk.CTkLabel(self.bottom_frame, text=f"Input: {get_input_device_name()}", font=theme.SMALL_FONT)
         mic.pack(side="left", padx=theme.BOTTOM_SIDE_PADDING)
         self.waveform = ctk.CTkLabel(
             self.bottom_frame,

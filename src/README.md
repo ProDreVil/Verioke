@@ -61,20 +61,25 @@ Verioke/
 │   │
 │   ├── songs/
 │   │   ├── importer.py             # Adds songs
-│   │   └── reference.py            # Generate/load reference notes
+│   │   └── reference.py            # Generates/loads reference notes
 │   │
 │   ├── sound/
 │   │   ├── audio.py                # Loads audio files
+│   │   ├── inputmeter.py           # Shows waveform meter
 │   │   ├── pitch.py                # Detects notes/pitch
+│   │   ├── player.py               # Plays the instrumental
 │   │   └── recorder.py             # Records microphone input
 │   │
 │   ├── test/
 │   │   ├── checker.py              # Checks whether wavs files are valid
+│   │   ├── sync.py                 # Checks if the song, instrumental, recoder syncs
 │   │   └── test.py                 # Code stash
 │   │
 │   ├── utils/
+│   │   ├── audiodevices.py         # Shows the current input device
 │   │   ├── config.py               # Constants/settings
-│   │   └── helpers.py              # Helper functions
+│   │   ├── helpers.py              # Helper functions
+│   │   └── lrc.py                  # Lyric utils
 │   │
 │   └── README.md                   # You are here
 │

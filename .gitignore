@@ -27,3 +27,5 @@ assets/ui/icons/*
 !assets/ui/icons/.gitkeep
 assets/ui/sfx/*
 !assets/ui/sfx/.gitkeep
+
+calculations.md
