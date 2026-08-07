@@ -6,6 +6,7 @@ from sound.player import AudioPlayer
 from sound.recorder import record_audio
 from sound.audio import get_audio_duration
 from threading import Thread
+from pathlib import Path
 from utils.helpers import get_recording_path
 from utils.lrc import load_lrc
 
@@ -14,17 +15,20 @@ class PerformanceScreen(ctk.CTkFrame):
         super().__init__(master, fg_color=theme.BACKGROUND)
         self.song = song
         self.player = AudioPlayer()
-        self.prepare_song()
         self.song_dration = 0
         self.start_time = 0
         self.create_stage()
+        self.prepare_song()
         self.start_countdown()
 
     def prepare_song(self):
         self.instrumental = f"assets/songs/{self.song}/instrumental.wav"
         self.duration = get_audio_duration(self.instrumental)
         self.player.load(self.instrumental)
-        self.lyrics = load_lrc(f"assets/songs/{self.song}/lyrics.lrc")
+        folder = Path("assets/songs") / self.song
+        song = load_lrc(folder / "lyrics.lrc")
+        self.song_title.configure(text=f"{song['title']} - {song['artist']}")
+        self.lyrics = song["lyrics"]
         self.current_index = 0
 
     def start_performance(self):
@@ -103,7 +107,8 @@ class PerformanceScreen(ctk.CTkFrame):
             self.stage,
             text="3",
             font=(theme.FONT_FAMILY, 110, "bold"),
-            text_color=theme.ACCENT
+            text_color=theme.ACCENT,
+            fg_color="transparent"
         )
 
         self.countdown.place(relx=0.5, rely=0.38, anchor="center")

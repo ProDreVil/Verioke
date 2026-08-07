@@ -23,28 +23,19 @@ Update importer
 Finish GUI
 
 Soundwave
-Recording, Playing Music, Progress
-
-
-🟢 Screen navigation
-🟢 Home screen (song selection)
-🟢 Results screen
-🟡 Recording screen
-🟡 Audio visualizer
-🟡 Background video integration
-🔵 GUI run_karaoke() integration
-🔵 Animations and polish
+Hover
+Icons
+Score
+Fuzzy
+Cancel + 100 Score keybind
 
 Spinning Disc of Emojis
 Waveform & Progress
-Minimized
 Need Icons
-Song selection
 Song plays while active/hover
 Grading (and how to hide the delay)
 Curtain + fade out + freeze
 Background play speed based on song bpm
-Lyric Sync
 Fuzzy Logic Table
 
 
