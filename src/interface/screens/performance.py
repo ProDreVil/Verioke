@@ -7,6 +7,7 @@ from sound.recorder import record_audio
 from sound.audio import get_audio_duration
 from threading import Thread
 from utils.helpers import get_recording_path
+from utils.lrc import load_lrc
 
 class PerformanceScreen(ctk.CTkFrame):
     def __init__(self, master, song=None):
@@ -23,9 +24,18 @@ class PerformanceScreen(ctk.CTkFrame):
         self.instrumental = f"assets/songs/{self.song}/instrumental.wav"
         self.duration = get_audio_duration(self.instrumental)
         self.player.load(self.instrumental)
+        self.lyrics = load_lrc(f"assets/songs/{self.song}/lyrics.lrc")
+        self.current_index = 0
 
     def start_performance(self):
         output = get_recording_path(self.song)
+        self.current_index = 0
+        if self.lyrics:
+            self.current_lyric.configure(text=self.lyrics[0]["text"])
+        if len(self.lyrics) > 1:
+            self.next_lyric.configure(text=self.lyrics[1]["text"])
+        else:
+            self.next_lyric.configure(text="")
         self.song_duration = self.duration
         self.start_time = time.time()
         self.player.play()
@@ -44,6 +54,25 @@ class PerformanceScreen(ctk.CTkFrame):
         else:
             self.countdown.destroy()
             self.start_performance()
+
+    def update_lyrics(self, elapsed):
+        while (self.current_index + 1 < len(self.lyrics) and elapsed >= self.lyrics[self.current_index + 1]["time"]):
+            self.current_index += 1
+        self.current_lyric.configure(text=self.lyrics[self.current_index]["text"])
+        if self.current_index + 1 < len(self.lyrics):
+            self.next_lyric.configure(text=self.lyrics[self.current_index + 1]["text"])
+        else:
+            self.next_lyric.configure(text="")
+
+    def update_progress(self):
+        elapsed = time.time() - self.start_time
+        self.update_lyrics(elapsed)
+        progress = min(elapsed / self.song_duration, 1)
+        self.progress.set(progress)
+        if progress < 1:
+            self.after(50, self.update_progress)
+        else:
+            self.master.show_results()
 
     def create_stage(self):
         self.stage = ctk.CTkFrame(self, fg_color=theme.BACKGROUND, corner_radius=0)
@@ -112,12 +141,3 @@ class PerformanceScreen(ctk.CTkFrame):
             text_color=theme.INFO
         )
         self.waveform.place(relx=0.5, rely=0.93, anchor="center")
-
-    def update_progress(self):
-        elapsed = time.time() - self.start_time
-        progress = min(elapsed / self.song_duration, 1)
-        self.progress.set(progress)
-        if progress < 1:
-            self.after(50, self.update_progress)
-        else:
-            self.master.show_results()
