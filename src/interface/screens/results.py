@@ -59,13 +59,9 @@ class ResultScreen(ctk.CTkFrame):
                 "timing": 0,
                 "loudness": 0
             }
-        pitch = 0
-        timing = 0
-        loudness = 0
-        for match in matches:
-            pitch += calculate_pitch_score(match)
-            timing += calculate_timing_score(match)
-            loudness += calculate_loudness_score(match)
+        pitch = sum(calculate_pitch_score(match) for match in matches)
+        timing = sum(calculate_timing_score(match) for match in matches)
+        loudness = sum(calculate_loudness_score(match) for match in matches)
         total = len(matches)
         return {
             "pitch": round(pitch / total),

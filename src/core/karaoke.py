@@ -6,7 +6,7 @@ from utils.helpers import process_audio, get_recording_path
 from core.scorer import compare_notes, calculate_final_score
 from interface.report import print_report
 
-def run_karaoke(song_folder: str | Path) -> float:
+def run_karaoke(song_folder: str | Path) -> dict:
     song_folder = Path(song_folder)
     song_name = song_folder.name
     instrumental_path = song_folder / "instrumental.wav"
