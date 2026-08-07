@@ -1,12 +1,27 @@
 import customtkinter as ctk
 
 from interface import theme
+from sound.player import AudioPlayer
+from sound.recorder import record_audio
+from sound.audio import get_audio_duration
+from threading import Thread
+from utils.helpers import get_recording_path
 
 class PerformanceScreen(ctk.CTkFrame):
     def __init__(self, master, song=None):
         super().__init__(master, fg_color=theme.BACKGROUND)
         self.song = song
+        print(self.song)
+        print(type(self.song))
         self.create_stage()
+
+    def start_performance(self):
+        instrumental = f"{self.song}/instrumental.mp3"
+        output = get_recording_path(self.song)
+        duration = get_audio_duration(instrumental)
+        self.player.load(instrumental)
+        self.player.play()
+        Thread(target=record_audio, args=(output, duration), daemon=True).start()
 
     def create_stage(self):
         self.stage = ctk.CTkFrame(self, fg_color=theme.BACKGROUND, corner_radius=0)

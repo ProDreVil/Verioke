@@ -25,5 +25,5 @@ def plot_waveform(audio, sample_rate):
     plt.show()
 
 if __name__ == "__main__":
-    audio, sample_rate = load_audio("assets/sample/sample.wav")
+    audio, sample_rate = load_audio("assets/songs/sample/instrumental.wav")
     plot_waveform(audio, sample_rate)

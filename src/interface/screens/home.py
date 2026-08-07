@@ -86,7 +86,7 @@ class HomeScreen(ctk.CTkFrame):
     def start_song(self):
         if self.selected_song is None:
             return
-        self.master.show_performance(self.selected_song)
+        self.master.show_performance(self.selected_song.title)
 
     def create_bottom(self):
         # self.bottom_frame = ctk.CTkFrame(
