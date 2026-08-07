@@ -36,6 +36,7 @@ class HomeScreen(ctk.CTkFrame):
             "Buwan",
             "Pompeii",
             "Total Eclipse of the Heart",
+            "Sample",
         ]
         self.song_cards = []
         self.selected_song = None

@@ -17,11 +17,14 @@ Download assets for GUI
   - Geometry Dash Play
  * Videos (8)
   - Subway Surfers
-Minimal GUI
 Fuzzy Logic
 
 Update importer
 Finish GUI
+
+Soundwave
+Recording, Playing Music, Progress
+
 
 🟢 Screen navigation
 🟢 Home screen (song selection)
@@ -43,6 +46,7 @@ Curtain + fade out + freeze
 Background play speed based on song bpm
 Lyric Sync
 Fuzzy Logic Table
+
 
 > ROADMAP:
 

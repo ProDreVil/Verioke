@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import time
 
 from interface import theme
 from sound.player import AudioPlayer
@@ -11,17 +12,38 @@ class PerformanceScreen(ctk.CTkFrame):
     def __init__(self, master, song=None):
         super().__init__(master, fg_color=theme.BACKGROUND)
         self.song = song
-        print(self.song)
-        print(type(self.song))
+        self.player = AudioPlayer()
+        self.prepare_song()
+        self.song_dration = 0
+        self.start_time = 0
         self.create_stage()
+        self.start_countdown()
+
+    def prepare_song(self):
+        self.instrumental = f"assets/songs/{self.song}/instrumental.wav"
+        self.duration = get_audio_duration(self.instrumental)
+        self.player.load(self.instrumental)
 
     def start_performance(self):
-        instrumental = f"{self.song}/instrumental.mp3"
         output = get_recording_path(self.song)
-        duration = get_audio_duration(instrumental)
-        self.player.load(instrumental)
+        self.song_duration = self.duration
+        self.start_time = time.time()
         self.player.play()
-        Thread(target=record_audio, args=(output, duration), daemon=True).start()
+        Thread(target=record_audio, args=(output, self.duration), daemon=True).start()
+        self.update_progress()
+
+    def start_countdown(self):
+        self.count = 3
+        self.update_countdown()
+
+    def update_countdown(self):
+        if self.count > 0:
+            self.countdown.configure(text=str(self.count))
+            self.count -= 1
+            self.after(1000, self.update_countdown)
+        else:
+            self.countdown.destroy()
+            self.start_performance()
 
     def create_stage(self):
         self.stage = ctk.CTkFrame(self, fg_color=theme.BACKGROUND, corner_radius=0)
@@ -90,3 +112,12 @@ class PerformanceScreen(ctk.CTkFrame):
             text_color=theme.INFO
         )
         self.waveform.place(relx=0.5, rely=0.93, anchor="center")
+
+    def update_progress(self):
+        elapsed = time.time() - self.start_time
+        progress = min(elapsed / self.song_duration, 1)
+        self.progress.set(progress)
+        if progress < 1:
+            self.after(50, self.update_progress)
+        else:
+            self.master.show_results()

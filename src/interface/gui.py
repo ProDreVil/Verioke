@@ -1,4 +1,6 @@
 import customtkinter as ctk
+import sounddevice as sd
+import utils.config as config
 
 from interface import theme
 from interface.screens.home import HomeScreen
@@ -17,6 +19,7 @@ class Verioke(ctk.CTk):
         except Exception:
             pass
         self.current_screen = None
+        self.warmup_audio()
         self.show_home()
         self.after(10, lambda: self.state("zoomed"))
     
@@ -34,3 +37,17 @@ class Verioke(ctk.CTk):
 
     def show_results(self):
         self.switch_screen(ResultScreen)
+
+    def warmup_audio(self):
+        try:
+            sd.rec(
+                int(0.05 * config.SAMPLE_RATE),
+                samplerate=config.SAMPLE_RATE,
+                channels=1,
+                dtype="float32",
+                device=config.INPUT_DEVICE
+            )
+            sd.wait()
+            print("Audio warm-up complete.")
+        except Exception as e:
+            print(f"Audio warm-up failed: {e}")
