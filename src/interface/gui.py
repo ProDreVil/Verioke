@@ -6,6 +6,7 @@ from interface import theme
 from interface.screens.home import HomeScreen
 from interface.screens.performance import PerformanceScreen
 from interface.screens.results import ResultScreen
+from sound.inputmeter import InputMeter
 
 class Verioke(ctk.CTk):
     def __init__(self):
@@ -18,10 +19,17 @@ class Verioke(ctk.CTk):
             self.iconbitmap("assets/ui/favicon.ico")
         except Exception:
             pass
+        self.input_meter = InputMeter()
+        self.input_meter.start()
+        # self.debug_meter()
         self.current_screen = None
         self.warmup_audio()
         self.show_home()
         self.after(10, lambda: self.state("zoomed"))
+
+    # def debug_meter(self):
+    #     print(round(self.input_meter.get_level(), 4))
+    #     self.after(200, self.debug_meter)
     
     def switch_screen(self, screen, *args):
         if self.current_screen:

@@ -7,6 +7,7 @@ from PIL import Image
 from pathlib import Path
 from interface import theme
 from interface.widgets.songcard import SongCard
+from utils.waveform import level_to_bar
 
 class HomeScreen(ctk.CTkFrame):
     def __init__(self, master):
@@ -14,6 +15,7 @@ class HomeScreen(ctk.CTkFrame):
         self.song_cards = []
         self.selected_song = None
         self.create_layout()
+        self.update_waveform()
 
     def create_layout(self):
         self.grid_columnconfigure(0, weight=1, minsize=theme.LEFT_PANEL_WIDTH)
@@ -118,13 +120,14 @@ class HomeScreen(ctk.CTkFrame):
     def create_bottom(self):
         mic = ctk.CTkLabel(self.bottom_frame, text="Input: AudioRelay Virtual Mic", font=theme.SMALL_FONT)
         mic.pack(side="left", padx=theme.BOTTOM_SIDE_PADDING)
-        waveform = ctk.CTkLabel(
+        self.waveform = ctk.CTkLabel(
             self.bottom_frame,
             text="▁▂▃▄▅▆▇█▇▆▅▄▃▂▁",
-            font=(
-                "Consolas",
-                theme.BOTTOM_WAVEFORM_FONT_SIZE
-            ),
+            font=("Consolas", theme.BOTTOM_WAVEFORM_FONT_SIZE),
             text_color=theme.INFO
         )
-        waveform.pack(side="right", padx=theme.BOTTOM_SIDE_PADDING)
+        self.waveform.pack(side="right", padx=theme.BOTTOM_SIDE_PADDING)
+
+    def update_waveform(self):
+        self.waveform.configure(text=self.master.input_meter.get_wave())
+        self.after(50, self.update_waveform)

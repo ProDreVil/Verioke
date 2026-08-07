@@ -9,6 +9,7 @@ from threading import Thread
 from pathlib import Path
 from utils.helpers import get_recording_path
 from utils.lrc import load_lrc
+from utils.waveform import level_to_bar
 
 class PerformanceScreen(ctk.CTkFrame):
     def __init__(self, master, song=None):
@@ -19,6 +20,7 @@ class PerformanceScreen(ctk.CTkFrame):
         self.start_time = 0
         self.create_stage()
         self.prepare_song()
+        self.update_waveform()
         self.start_countdown()
 
     def prepare_song(self):
@@ -77,6 +79,10 @@ class PerformanceScreen(ctk.CTkFrame):
             self.after(50, self.update_progress)
         else:
             self.master.show_results()
+
+    def update_waveform(self):
+        self.waveform.configure(text=self.master.input_meter.get_wave())
+        self.after(50, self.update_waveform)
 
     def create_stage(self):
         self.stage = ctk.CTkFrame(self, fg_color=theme.BACKGROUND, corner_radius=0)
