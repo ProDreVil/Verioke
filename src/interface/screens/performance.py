@@ -5,12 +5,11 @@ from interface import theme
 from sound.player import AudioPlayer
 from sound.recorder import record_audio
 from sound.audio import get_audio_duration
-from core.pipeline import process_recording
+from core.karaoke import analyze_performance
 from threading import Thread
 from pathlib import Path
 from utils.helpers import get_recording_path
 from utils.lrc import load_lrc
-from utils.waveform import level_to_bar
 
 class PerformanceScreen(ctk.CTkFrame):
     def __init__(self, master, song=None):
@@ -35,7 +34,7 @@ class PerformanceScreen(ctk.CTkFrame):
         self.current_index = 0
 
     def start_performance(self):
-        output = get_recording_path(self.song)
+        self.recording_path = get_recording_path(self.song)
         self.current_index = 0
         if self.lyrics:
             self.current_lyric.configure(text=self.lyrics[0]["text"])
@@ -46,7 +45,8 @@ class PerformanceScreen(ctk.CTkFrame):
         self.song_duration = self.duration
         self.start_time = time.time()
         self.player.play()
-        Thread(target=record_audio, args=(output, self.duration), daemon=True).start()
+        self.record_thread = Thread(target=record_audio, args=(self.recording_path, self.duration), daemon=True)
+        self.record_thread.start()
         self.update_progress()
 
     def start_countdown(self):
@@ -79,8 +79,7 @@ class PerformanceScreen(ctk.CTkFrame):
         if progress < 1:
             self.after(50, self.update_progress)
         else:
-            self.meter.stop()
-            self.finish_song()
+            self.finish_performance()
 
     def update_waveform(self):
         self.waveform.configure(text=self.master.input_meter.get_wave())
@@ -155,7 +154,10 @@ class PerformanceScreen(ctk.CTkFrame):
         )
         self.waveform.place(relx=0.5, rely=0.93, anchor="center")
 
-    def finish_song(self):
-        recording = get_recording_path(self.song)
-        score = 0
-        self.master.show_results(score)
+    def finish_performance(self):
+        self.record_thread.join()
+        print("Recording:", self.recording_path)
+        print("Exists:", Path(self.recording_path).exists())
+        song_folder = Path("assets/songs") / self.song
+        result = analyze_performance(song_folder, self.recording_path)
+        self.master.show_results(result)

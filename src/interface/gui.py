@@ -43,8 +43,10 @@ class Verioke(ctk.CTk):
     def show_performance(self, song):
         self.switch_screen(PerformanceScreen, song)
 
-    def show_results(self):
-        self.switch_screen(ResultScreen)
+    def show_results(self, result):
+        self.current_screen.destroy()
+        self.current_screen = ResultScreen(self, result)
+        self.current_screen.pack(fill="both", expand=True)
 
     def warmup_audio(self):
         try:

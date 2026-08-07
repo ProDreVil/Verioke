@@ -22,21 +22,13 @@ Fuzzy Logic
 Update importer
 Finish GUI
 
-Soundwave
-Hover
 Icons
-Score
-Fuzzy
 Cancel + 100 Score keybind
-
+Empty files
 Spinning Disc of Emojis
-Waveform & Progress
-Need Icons
 Song plays while active/hover
-Grading (and how to hide the delay)
 Curtain + fade out + freeze
 Background play speed based on song bpm
-Fuzzy Logic Table
 
 
 > ROADMAP:
@@ -50,6 +42,6 @@ Fuzzy Logic Table
 ✅ Get user's recording
 ✅ Compare reference vs. singer
 ✅ Calculate score
-Build GUI
-Implement Fuzzy Logic
+✅ Build GUI
+✅ Implement Fuzzy Logic
 Optimization

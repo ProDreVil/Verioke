@@ -52,7 +52,7 @@ Verioke/
 │   │   │   ├── progress.py         # Progress bar
 │   │   │   ├── songcard.py         # Song card
 │   │   │   ├── videoplayer.py      # Video player
-│   │   │   └── visualizer.py       # visualizer
+│   │   │   └── visualizer.py       # Visualizer
 │   │   │
 │   │   ├── gui.py                  # Controls the screen switching
 │   │   ├── report.py               # Console reports
