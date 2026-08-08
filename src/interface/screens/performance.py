@@ -5,6 +5,7 @@ from interface import theme
 from sound.player import AudioPlayer
 from sound.recorder import record_audio
 from sound.audio import get_audio_duration
+from interface.widgets.background import BackgroundVideo
 from core.karaoke import analyze_performance
 from threading import Thread
 from pathlib import Path
@@ -21,6 +22,7 @@ class PerformanceScreen(ctk.CTkFrame):
         self.create_stage()
         self.prepare_song()
         self.update_waveform()
+        self.background.start()
         self.start_countdown()
 
     def prepare_song(self):
@@ -88,26 +90,27 @@ class PerformanceScreen(ctk.CTkFrame):
     def create_stage(self):
         self.stage = ctk.CTkFrame(self, fg_color=theme.BACKGROUND, corner_radius=0)
         self.stage.pack(fill="both", expand=True)
-        self.background = ctk.CTkFrame(self.stage, fg_color=theme.BACKGROUND, corner_radius=0)
-        self.background.place(relx=0, rely=0, relwidth=1, relheight=1)
-        self.background_label = ctk.CTkLabel(
-            self.background,
-            text="Background Video",
-            font=theme.BODY_FONT
+        self.background = BackgroundVideo(self.stage)
+        self.background.place(
+            relx=0,
+            rely=0,
+            relwidth=1,
+            relheight=1
         )
-        self.background_label.place(relx=0.5, rely=0.35, anchor="center")
         self.song_title = ctk.CTkLabel(
             self.stage,
             text="Beer - Itchyworms",
             font=theme.HEADING_FONT,
-            text_color=theme.PRIMARY
+            text_color=theme.PRIMARY,
+            fg_color="transparent"
         )
         self.song_title.place(relx=0.05, rely=0.05, anchor="w")
         self.recording = ctk.CTkLabel(
             self.stage,
             text="🔴",
             font=theme.SMALL_FONT,
-            text_color=theme.ERROR
+            text_color=theme.ERROR,
+            fg_color="transparent"
         )
         self.recording.place(relx=0.96, rely=0.05, anchor="ne")
         self.countdown = ctk.CTkLabel(
@@ -126,7 +129,8 @@ class PerformanceScreen(ctk.CTkFrame):
             text_color=theme.CURRENT_LYRIC,
             justify="left",
             anchor="w",
-            wraplength=1100
+            wraplength=1100,
+            fg_color="transparent"
         )
         self.current_lyric.place(relx=0.05, rely=0.73, anchor="w")
         self.next_lyric = ctk.CTkLabel(
@@ -136,13 +140,17 @@ class PerformanceScreen(ctk.CTkFrame):
             text_color=theme.NEXT_LYRIC,
             justify="left",
             anchor="w",
-            wraplength=1100
+            wraplength=1100,
+            fg_color="#000000",
+            corner_radius=8
         )
         self.next_lyric.place(relx=0.05, rely=0.78, anchor="w")
         self.progress = ctk.CTkProgressBar(
             self.stage,
             width=1280,
-            height=10
+            height=10,
+            fg_color="#000000",
+            corner_radius=8
         )
         self.progress.place(relx=0.5, rely=0.87, anchor="center")
         self.progress.set(0)
@@ -159,5 +167,20 @@ class PerformanceScreen(ctk.CTkFrame):
         print("Recording:", self.recording_path)
         print("Exists:", Path(self.recording_path).exists())
         song_folder = Path("assets/songs") / self.song
-        result = analyze_performance(song_folder, self.recording_path)
-        self.master.show_results(result)
+        self.current_lyric.configure(text="Analyzing performance...")
+        self.next_lyric.configure(text="Please wait...")
+        Thread(
+            target=self.analyze_in_background,
+            args=(song_folder,),
+            daemon=True
+        ).start()
+
+    def analyze_in_background(self, song_folder):
+        result = analyze_performance(
+            song_folder,
+            self.recording_path
+        )
+        self.after(
+            0,
+            lambda: self.master.show_results(result)
+        )

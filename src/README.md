@@ -49,10 +49,7 @@ Verioke/
 │   │   │
 │   │   ├── widgets/
 │   │   │   ├── background.py       # Background video playing
-│   │   │   ├── progress.py         # Progress bar
-│   │   │   ├── songcard.py         # Song card
-│   │   │   ├── videoplayer.py      # Video player
-│   │   │   └── visualizer.py       # Visualizer
+│   │   │   └── songcard.py         # Song card
 │   │   │
 │   │   ├── gui.py                  # Controls the screen switching
 │   │   ├── report.py               # Console reports
