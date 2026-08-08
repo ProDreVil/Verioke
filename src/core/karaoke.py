@@ -25,6 +25,5 @@ def analyze_performance(song_folder: str | Path, recording_path: str | Path) -> 
     reference_notes = load_reference(song_folder)
     singer_notes = process_audio(recording_path)
     matches = compare_notes(reference_notes, singer_notes)
-    print_report(reference_notes, singer_notes, matches)
     final_score = calculate_final_score(matches)
     return {"score": final_score, "matches": matches, "reference_notes": reference_notes, "singer_notes": singer_notes}

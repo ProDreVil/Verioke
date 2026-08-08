@@ -30,24 +30,9 @@ def right_shoulder(x: float, a: float, b: float) -> float:
 
 def fuzzify_pitch(pitch_difference: float) -> dict[str, float]:
     return {
-        "perfect": left_shoulder(
-            pitch_difference,
-            0.0,
-            0.5
-        ),
-
-        "good": triangular(
-            pitch_difference,
-            0.25,
-            0.75,
-            1.5
-        ),
-
-        "off": right_shoulder(
-            pitch_difference,
-            1.0,
-            3.0
-        )
+        "perfect": left_shoulder(pitch_difference, 0.25, 1.0),
+        "good": triangular(pitch_difference, 0.5, 1.5, 2.5),
+        "off": right_shoulder(pitch_difference, 2.0, 4.0)
     }
 
 
