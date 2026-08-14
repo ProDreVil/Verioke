@@ -30,9 +30,9 @@ def right_shoulder(x: float, a: float, b: float) -> float:
 
 def fuzzify_pitch(pitch_difference: float) -> dict[str, float]:
     return {
-        "perfect": left_shoulder(pitch_difference, 0.25, 1.0),
-        "good": triangular(pitch_difference, 0.5, 1.5, 2.5),
-        "off": right_shoulder(pitch_difference, 2.0, 4.0)
+        "perfect": left_shoulder(pitch_difference, 0.50, 1.0),
+        "good": triangular(pitch_difference, 0.75, 1.5, 2.5),
+        "off": right_shoulder(pitch_difference, 2.5, 4.0)
     }
 
 
@@ -105,112 +105,98 @@ def output_memberships(score: np.ndarray) -> dict[str, np.ndarray]:
     }
 
 def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: dict[str, float]) -> dict[str, float]:
-    rules = []
     # --------------------------------------------------------
     # EXCELLENT
     # --------------------------------------------------------
-    rules.append(
-        min(
-            pitch["perfect"],
-            timing["accurate"],
-            loudness["good"]
-        )
+    excellent_1 = min(
+        pitch["perfect"],
+        timing["accurate"],
+        loudness["good"]
     )
-
-    rules.append(
-        min(
-            pitch["perfect"],
-            timing["accurate"]
-        )
+    excellent_2 = min(
+        pitch["perfect"],
+        timing["accurate"],
+        loudness["slightly_off"]
+    )
+    excellent = max(
+        excellent_1,
+        excellent_2
     )
     # --------------------------------------------------------
     # GOOD
     # --------------------------------------------------------
-    rules.append(
-        min(
-            pitch["good"],
-            timing["accurate"]
-        )
+    good_1 = min(
+        pitch["good"],
+        timing["accurate"],
+        loudness["good"]
     )
-
-    rules.append(
-        min(
-            pitch["perfect"],
-            timing["slightly_off"]
-        )
+    good_2 = min(
+        pitch["perfect"],
+        timing["slightly_off"],
+        loudness["good"]
     )
-    rules.append(
-        min(
-            pitch["good"],
-            timing["slightly_off"],
-            loudness["good"]
-        )
+    good_3 = min(
+        pitch["perfect"],
+        timing["accurate"],
+        loudness["slightly_off"]
     )
-    rules.append(
-        min(
-            pitch["perfect"],
-            loudness["slightly_off"]
-        )
+    good_4 = min(
+        pitch["good"],
+        timing["slightly_off"],
+        loudness["good"]
     )
-    # --------------------------------------------------------
-    # OKAY
-    # --------------------------------------------------------
-    rules.append(
-        min(
-            pitch["good"],
-            timing["badly_off"]
-        )
+    good = max(
+        good_1,
+        good_2,
+        good_3,
+        good_4
     )
-    rules.append(
-        min(
-            pitch["off"],
-            timing["accurate"]
-        )
+    okay_1 = min(
+        pitch["good"],
+        timing["badly_off"]
     )
-    rules.append(
-        min(
-            pitch["good"],
-            loudness["slightly_off"]
-        )
+    okay_2 = min(
+        pitch["off"],
+        timing["accurate"]
     )
-    rules.append(
-        min(
-            pitch["perfect"],
-            loudness["bad"]
-        )
+    okay_3 = min(
+        pitch["good"],
+        loudness["slightly_off"]
+    )
+    okay_4 = min(
+        pitch["perfect"],
+        loudness["bad"]
+    )
+    okay_5 = min(
+        timing["slightly_off"],
+        loudness["slightly_off"]
+    )
+    okay = max(
+        okay_1,
+        okay_2,
+        okay_3,
+        okay_4,
+        okay_5
     )
     # --------------------------------------------------------
     # POOR
     # --------------------------------------------------------
-    rules.append(
-        pitch["off"]
-    )
-    rules.append(
+    poor_1 = min(
+        pitch["off"],
         timing["badly_off"]
     )
-    rules.append(
+    poor_2 = min(
+        pitch["off"],
         loudness["bad"]
     )
-    excellent = max(
-        rules[0],
-        rules[1]
-    )
-    good = max(
-        rules[2],
-        rules[3],
-        rules[4],
-        rules[5]
-    )
-    okay = max(
-        rules[6],
-        rules[7],
-        rules[8],
-        rules[9]
+    poor_3 = min(
+        timing["badly_off"],
+        loudness["bad"]
     )
     poor = max(
-        rules[10],
-        rules[11],
-        rules[12]
+        poor_1,
+        poor_2,
+        poor_3
     )
     return {
         "poor": poor,

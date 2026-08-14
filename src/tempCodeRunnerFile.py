@@ -1,2 +1,1 @@
-app = Verioke()
-app.mainloop()
+
