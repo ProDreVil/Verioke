@@ -32,7 +32,7 @@ def fuzzify_pitch(pitch_difference: float) -> dict[str, float]:
     return {
         "perfect": left_shoulder(pitch_difference, 0.50, 1.0),
         "good": triangular(pitch_difference, 0.75, 1.5, 2.5),
-        "off": right_shoulder(pitch_difference, 2.5, 4.0)
+        "off": right_shoulder(pitch_difference, 2.4, 4.0)
     }
 
 
@@ -99,7 +99,7 @@ def output_memberships(score: np.ndarray) -> dict[str, np.ndarray]:
         ]),
 
         "excellent": np.array([
-            right_shoulder(value, 75, 95)
+            1.0 if value >= 95 else right_shoulder(value, 75, 95)
             for value in score
         ])
     }
@@ -152,7 +152,7 @@ def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: 
         good_4
     )
     okay_1 = min(
-        pitch["good"],
+        max(pitch["perfect"], pitch["good"]),
         timing["badly_off"]
     )
     okay_2 = min(
@@ -206,6 +206,8 @@ def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: 
     }
 
 def defuzzify(aggregated_memberships: dict[str, float], resolution: int = 1001) -> float:
+    if aggregated_memberships["excellent"] == 1.0:
+        return 100.0
     universe = np.linspace(0, 100, resolution)
     output_sets = output_memberships(universe)
     aggregated = np.zeros_like(universe)
