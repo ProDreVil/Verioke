@@ -5,13 +5,12 @@ import utils.config as config
 
 def compare_notes(reference_notes: list[Note], singer_notes: list[Note]) -> list[Match]:
     matches = []
-    reference_index = 0
     singer_index = 0
-    while (reference_index < len(reference_notes) and singer_index < len(singer_notes)):
-        reference = reference_notes[reference_index]
-        singer = singer_notes[singer_index]
-        time_difference = abs(reference.time - singer.time)
-        if time_difference <= config.TIME_TOLERANCE:
+    for reference in reference_notes:
+        while (singer_index < len(singer_notes) and singer_notes[singer_index].time < reference.time - config.TIME_TOLERANCE):
+            singer_index += 1
+        if (singer_index < len(singer_notes) and abs(reference.time - singer_notes[singer_index].time) <= config.TIME_TOLERANCE):
+            singer = singer_notes[singer_index]
             matches.append(
                 Match(
                     reference=reference,
@@ -19,18 +18,17 @@ def compare_notes(reference_notes: list[Note], singer_notes: list[Note]) -> list
                     pitch_difference=abs(
                         reference.midi - singer.midi
                     ),
-                    timing_difference=time_difference,
+                    timing_difference=abs(
+                        reference.time - singer.time
+                    ),
                     loudness_difference=abs(
                         reference.loudness - singer.loudness
                     )
                 )
             )
-            reference_index += 1
-            singer_index += 1
-        elif singer.time < reference.time:
             singer_index += 1
         else:
-            reference_index += 1
+            matches.append(Match(reference=reference, singer=None, pitch_difference=4.0, timing_difference=0.40, loudness_difference=0.60))
     return matches
 
 def calculate_pitch_score(match: Match) -> float: # just for reference

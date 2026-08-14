@@ -11,12 +11,12 @@ class Note:
 
 @dataclass
 class Match:
-    reference: Note
-    singer: Note
-    pitch_difference: int
+    reference: Note | None
+    singer: Note | None
+    pitch_difference: float
     timing_difference: float
     loudness_difference: float
-    picth_score: float = 0.0
+    pitch_score: float = 0.0
     timing_score: float = 0.0
     loudness_score: float = 0.0
     note_score: float = 0.0

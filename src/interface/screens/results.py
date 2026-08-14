@@ -25,7 +25,7 @@ class ResultScreen(ctk.CTkFrame):
             self,
             text=self.get_grade(),
             font=theme.BODY_FONT,
-            text_color=theme.ACCENT
+            text_color=theme.PRIMARY
         )
         grade_label.pack(pady=(0, 10))
         image_path = Path("assets/ui/grades") / self.get_result_image()
