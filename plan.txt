@@ -24,11 +24,9 @@ Finish GUI
 
 Icons
 Cancel + 100 Score keybind
-Empty files
 Spinning Disc of Emojis
 Song plays while active/hover
 Curtain + fade out + freeze
-Background play speed based on song bpm
 
 
 > ROADMAP:
