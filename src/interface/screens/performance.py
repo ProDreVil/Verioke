@@ -144,7 +144,7 @@ class PerformanceScreen(ctk.CTkFrame):
             fg_color="#000000",
             corner_radius=8
         )
-        self.next_lyric.place(relx=0.05, rely=0.78, anchor="w")
+        self.next_lyric.place(relx=0.05, rely=0.80, anchor="w")
         self.progress = ctk.CTkProgressBar(
             self.stage,
             width=1280,

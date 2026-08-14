@@ -4,6 +4,7 @@ import utils.config as config
 
 from collections import deque
 from utils.waveform import level_to_bar
+from utils.audiodevices import get_input_device
 
 class InputMeter:
     def __init__(self):
@@ -26,7 +27,7 @@ class InputMeter:
             samplerate=config.SAMPLE_RATE,
             channels=1,
             dtype="float32",
-            device=config.INPUT_DEVICE,
+            device=get_input_device(),
             callback=self.callback
         )
         self.stream.start()

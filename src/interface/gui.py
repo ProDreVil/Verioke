@@ -7,6 +7,7 @@ from interface.screens.home import HomeScreen
 from interface.screens.performance import PerformanceScreen
 from interface.screens.results import ResultScreen
 from sound.inputmeter import InputMeter
+from utils.audiodevices import get_input_device
 
 class Verioke(ctk.CTk):
     def __init__(self):
@@ -55,7 +56,7 @@ class Verioke(ctk.CTk):
                 samplerate=config.SAMPLE_RATE,
                 channels=1,
                 dtype="float32",
-                device=config.INPUT_DEVICE
+                device=get_input_device()
             )
             sd.wait()
             print("Audio warm-up complete.")

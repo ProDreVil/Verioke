@@ -6,16 +6,14 @@ import cv2
 
 from interface import theme
 
-
 class BackgroundVideo(ctk.CTkFrame):
-    def __init__(self, master, bpm=120):
+    def __init__(self, master):
         super().__init__(
             master,
             fg_color="transparent",
             corner_radius=0
         )
 
-        self.bpm = bpm
         self.video_path = None
         self.cap = None
         self.running = False
@@ -69,6 +67,7 @@ class BackgroundVideo(ctk.CTkFrame):
             return
 
         duration = frame_count / fps
+
         max_start = max(0, duration - 5)
         start_time = random.uniform(0, max_start)
 
@@ -77,13 +76,9 @@ class BackgroundVideo(ctk.CTkFrame):
             start_time * 1000
         )
 
-        self.playback_speed = max(
-            0.75,
-            min(self.bpm / 120, 1.5)
-        )
+        self.playback_speed = random.uniform(0.8, 1.8)
 
         print(f"Video: {self.video_path.name}")
-        print(f"BPM: {self.bpm:.2f}")
         print(f"Playback speed: {self.playback_speed:.2f}x")
         print(f"Starting timestamp: {start_time:.2f}s")
 
@@ -117,6 +112,7 @@ class BackgroundVideo(ctk.CTkFrame):
 
         if width > 1 and height > 1:
             image = Image.fromarray(frame)
+
             image = image.resize(
                 (width, height),
                 Image.Resampling.LANCZOS
@@ -137,7 +133,10 @@ class BackgroundVideo(ctk.CTkFrame):
             int(1000 / (fps * self.playback_speed))
         )
 
-        self.after(delay, self.update_frame)
+        self.after(
+            delay,
+            self.update_frame
+        )
 
     def stop(self):
         self.running = False

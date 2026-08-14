@@ -106,11 +106,9 @@ def output_memberships(score: np.ndarray) -> dict[str, np.ndarray]:
 
 def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: dict[str, float]) -> dict[str, float]:
     rules = []
-
     # --------------------------------------------------------
     # EXCELLENT
     # --------------------------------------------------------
-
     rules.append(
         min(
             pitch["perfect"],
@@ -125,11 +123,9 @@ def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: 
             timing["accurate"]
         )
     )
-
     # --------------------------------------------------------
     # GOOD
     # --------------------------------------------------------
-
     rules.append(
         min(
             pitch["good"],
@@ -242,15 +238,15 @@ def fuzzy_note_score(pitch_difference: float, timing_difference: float, loudness
     loudness = fuzzify_loudness(max(0.0, loudness_difference))
     rule_results = evaluate_rules(pitch, timing, loudness)
     score = defuzzify(rule_results)
-    print(f"\nPitch difference:    {pitch_difference:.3f}")
-    print(f"Timing difference:   {timing_difference:.3f}")
-    print(f"Loudness difference: {loudness_difference:.3f}")
-    print("\nMemberships:")
-    print(f"Pitch:    {pitch}")
-    print(f"Timing:   {timing}")
-    print(f"Loudness: {loudness}")
-    print("\nRule output:")
-    print(rule_results)
-    print(f"\nFuzzy score: {score:.2f}")
-    print("------------------")
+    # print(f"\nPitch difference:    {pitch_difference:.3f}")
+    # print(f"Timing difference:   {timing_difference:.3f}")
+    # print(f"Loudness difference: {loudness_difference:.3f}")
+    # print("\nMemberships:")
+    # print(f"Pitch:    {pitch}")
+    # print(f"Timing:   {timing}")
+    # print(f"Loudness: {loudness}")
+    # print("\nRule output:")
+    # print(rule_results)
+    # print(f"\nFuzzy score: {score:.2f}")
+    # print("------------------")
     return round(max(0.0, min(100.0, score)), 2)

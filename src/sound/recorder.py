@@ -1,8 +1,8 @@
 import sounddevice as sd
 import soundfile as sf
-import numpy as np
 
 import utils.config as config
+from utils.audiodevices import get_input_device
 
 def record_audio(output_path: str, duration: float):
     print("Recorder: start")
@@ -11,7 +11,7 @@ def record_audio(output_path: str, duration: float):
         samplerate=config.SAMPLE_RATE,
         channels=1,
         dtype="float32",
-        device=config.INPUT_DEVICE
+        device=get_input_device()
     )
     print("Recorder: rec() returned")
     sd.wait()
