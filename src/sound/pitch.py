@@ -21,6 +21,7 @@ def detect_pitch(audio) -> list:
 
 def extract_notes(frequencies, rms, sample_rate) -> list[Note]:
     notes = []
+    frame_duration = config.HOP_LENGTH / sample_rate
     for frame_index, frequency in enumerate(frequencies):
         if math.isnan(frequency):
             continue
@@ -29,7 +30,7 @@ def extract_notes(frequencies, rms, sample_rate) -> list[Note]:
         midi = round(librosa.hz_to_midi(frequency))
         pitch = librosa.midi_to_note(midi)
         loudness = float(rms[frame_index])
-        notes.append(Note(time=time, duration=0.0, frequency=frequency, midi=midi, pitch=pitch, loudness=loudness))
+        notes.append(Note(time=time, duration=frame_duration, frequency=frequency, midi=midi, pitch=pitch, loudness=loudness))
     return merge_notes(notes)
 
 def merge_notes(notes: list[Note]) -> list[Note]:

@@ -66,14 +66,12 @@ def fuzzify_loudness(loudness_difference: float) -> dict[str, float]:
             0.05,
             0.20
         ),
-
         "slightly_off": triangular(
             loudness_difference,
             0.10,
             0.25,
             0.45
         ),
-
         "bad": right_shoulder(
             loudness_difference,
             0.35,
@@ -87,17 +85,14 @@ def output_memberships(score: np.ndarray) -> dict[str, np.ndarray]:
             left_shoulder(value, 0, 35)
             for value in score
         ]),
-
         "okay": np.array([
             triangular(value, 20, 45, 65)
             for value in score
         ]),
-
         "good": np.array([
             triangular(value, 50, 70, 85)
             for value in score
         ]),
-
         "excellent": np.array([
             1.0 if value >= 95 else right_shoulder(value, 75, 95)
             for value in score
@@ -105,9 +100,6 @@ def output_memberships(score: np.ndarray) -> dict[str, np.ndarray]:
     }
 
 def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: dict[str, float]) -> dict[str, float]:
-    # --------------------------------------------------------
-    # EXCELLENT
-    # --------------------------------------------------------
     excellent_1 = min(
         pitch["perfect"],
         timing["accurate"],
@@ -122,9 +114,6 @@ def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: 
         excellent_1,
         excellent_2
     )
-    # --------------------------------------------------------
-    # GOOD
-    # --------------------------------------------------------
     good_1 = min(
         pitch["good"],
         timing["accurate"],
@@ -171,16 +160,25 @@ def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: 
         timing["slightly_off"],
         loudness["slightly_off"]
     )
+    okay_6 = min(
+        pitch["off"],
+        timing["slightly_off"],
+        loudness["good"]
+    )
+    okay_7 = min(
+        pitch["off"],
+        timing["slightly_off"],
+        loudness["slightly_off"]
+    )
     okay = max(
         okay_1,
         okay_2,
         okay_3,
         okay_4,
-        okay_5
+        okay_5,
+        okay_6,
+        okay_7
     )
-    # --------------------------------------------------------
-    # POOR
-    # --------------------------------------------------------
     poor_1 = min(
         pitch["off"],
         timing["badly_off"]
@@ -193,10 +191,16 @@ def evaluate_rules(pitch: dict[str, float], timing: dict[str, float], loudness: 
         timing["badly_off"],
         loudness["bad"]
     )
+    poor_4 = min(
+        pitch["off"],
+        timing["slightly_off"],
+        loudness["good"]
+    )
     poor = max(
         poor_1,
         poor_2,
-        poor_3
+        poor_3,
+        poor_4
     )
     return {
         "poor": poor,

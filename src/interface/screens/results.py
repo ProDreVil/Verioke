@@ -1,10 +1,10 @@
 import customtkinter as ctk
+
 from pathlib import Path
 from PIL import Image
 
 from interface import theme
-from core.scorer import calculate_pitch_score, calculate_timing_score, calculate_loudness_score
-
+from core.scorer import (calculate_pitch_score, calculate_timing_score, calculate_loudness_score)
 
 class ResultScreen(ctk.CTkFrame):
     def __init__(self, master, result):
@@ -14,39 +14,104 @@ class ResultScreen(ctk.CTkFrame):
         self.create_ui()
 
     def create_ui(self):
-        score_label = ctk.CTkLabel(self, text=str(self.score), font=(theme.FONT_FAMILY, 100, "bold"), text_color=theme.ACCENT)
-        score_label.pack()
+        score_label = ctk.CTkLabel(
+            self,
+            text=str(self.score),
+            font=theme.SCORE_FONT,
+            text_color=theme.ACCENT
+        )
+        score_label.pack(pady=(30, 0))
+        grade_label = ctk.CTkLabel(
+            self,
+            text=self.get_grade(),
+            font=theme.BODY_FONT,
+            text_color=theme.ACCENT
+        )
+        grade_label.pack(pady=(0, 10))
         image_path = Path("assets/ui/grades") / self.get_result_image()
         if image_path.exists():
-            image = ctk.CTkImage(light_image=Image.open(image_path), dark_image=Image.open(image_path), size=(250, 250))
-            image_label = ctk.CTkLabel(self, image=image, text="")
-            image_label.image = image
-            image_label.pack(pady=20)
+            image = ctk.CTkImage(
+                light_image=Image.open(image_path),
+                dark_image=Image.open(image_path),
+                size=(180, 180)
+            )
+            image_label = ctk.CTkLabel(
+                self,
+                image=image,
+                text=""
+            )
+            image_label.pack(pady=10)
         breakdown = self.calculate_breakdown()
-        breakdown_label = ctk.CTkLabel(
+        breakdown_frame = ctk.CTkFrame(
             self,
-            text=(
-                f"Pitch Accuracy:    {breakdown['pitch']}\n"
-                f"Timing Accuracy:   {breakdown['timing']}\n"
-                f"Loudness Accuracy: {breakdown['loudness']}"
-            ),
-            font=theme.BODY_FONT,
-            justify="left"
+            fg_color="transparent"
         )
-        breakdown_label.pack(pady=20)
-        grade_label = ctk.CTkLabel(self, text=self.get_grade(), font=theme.HEADING_FONT)
-        grade_label.pack()
+        breakdown_frame.pack(
+            fill="x",
+            padx=100,
+            pady=20
+        )
+        self.create_breakdown_bar(
+            breakdown_frame,
+            "Pitch Accuracy",
+            breakdown["pitch"]
+        )
+        self.create_breakdown_bar(
+            breakdown_frame,
+            "Timing Accuracy",
+            breakdown["timing"]
+        )
+        self.create_breakdown_bar(
+            breakdown_frame,
+            "Loudness Accuracy",
+            breakdown["loudness"]
+        )
         back_button = ctk.CTkButton(
             self,
             text="Return",
             width=200,
-            height=50,
+            height=40,
             font=theme.HEADING_FONT,
             fg_color=theme.PRIMARY,
             hover_color=theme.ACCENT,
             command=self.back_home
         )
         back_button.pack(pady=30)
+
+    def create_breakdown_bar(self, parent, label, value):
+        container = ctk.CTkFrame(parent, fg_color="transparent")
+        container.pack(pady=8)
+        if label == "Pitch Accuracy":
+            progress_color = theme.PITCH
+        elif label == "Timing Accuracy":
+            progress_color = theme.TIMING
+        else:
+            progress_color = theme.LOUDNESS
+        label_widget = ctk.CTkLabel(
+            container,
+            text=label,
+            font=theme.BODY_FONT,
+            width=150,
+            anchor="w"
+        )
+        label_widget.grid(row=0, column=0, padx=(0, 10))
+        progress = ctk.CTkProgressBar(
+            container,
+            width=300,
+            height=8,
+            corner_radius=6,
+            progress_color=progress_color
+        )
+        progress.grid(row=0, column=1, padx=10)
+        value_widget = ctk.CTkLabel(
+            container,
+            text=str(value),
+            font=theme.BODY_FONT,
+            width=30,
+            anchor="e"
+        )
+        value_widget.grid(row=0, column=2, padx=(10, 0))
+        progress.set(value / 100)
 
     def back_home(self):
         self.master.show_home()
@@ -59,9 +124,18 @@ class ResultScreen(ctk.CTkFrame):
                 "timing": 0,
                 "loudness": 0
             }
-        pitch = sum(calculate_pitch_score(match) for match in matches)
-        timing = sum(calculate_timing_score(match) for match in matches)
-        loudness = sum(calculate_loudness_score(match) for match in matches)
+        pitch = sum(
+            calculate_pitch_score(match)
+            for match in matches
+        )
+        timing = sum(
+            calculate_timing_score(match)
+            for match in matches
+        )
+        loudness = sum(
+            calculate_loudness_score(match)
+            for match in matches
+        )
         total = len(matches)
         return {
             "pitch": round(pitch / total),
@@ -98,10 +172,10 @@ class ResultScreen(ctk.CTkFrame):
     def get_grade(self):
         if self.score >= 90:
             return "Excellent!"
-        elif self.score >= 75:
+        if self.score >= 75:
             return "Good!"
-        elif self.score >= 50:
+        if self.score >= 50:
             return "Average"
-        elif self.score >= 25:
+        if self.score >= 25:
             return "Needs Improvement"
         return "Keep Practicing"
