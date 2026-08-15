@@ -18,14 +18,11 @@ def left_shoulder(x: float, a: float, b: float) -> float:
         return 0.0
     return (b - x) / (b - a)
 
-
 def right_shoulder(x: float, a: float, b: float) -> float:
     if x <= a:
         return 0.0
-
     if x >= b:
         return 1.0
-
     return (x - a) / (b - a)
 
 def fuzzify_pitch(pitch_difference: float) -> dict[str, float]:
@@ -35,7 +32,6 @@ def fuzzify_pitch(pitch_difference: float) -> dict[str, float]:
         "off": right_shoulder(pitch_difference, 2.4, 4.0)
     }
 
-
 def fuzzify_timing(timing_difference: float) -> dict[str, float]:
     return {
         "accurate": left_shoulder(
@@ -43,21 +39,18 @@ def fuzzify_timing(timing_difference: float) -> dict[str, float]:
             0.02,
             0.08
         ),
-
         "slightly_off": triangular(
             timing_difference,
             0.04,
             0.12,
             0.25
         ),
-
         "badly_off": right_shoulder(
             timing_difference,
             0.18,
             0.40
         )
     }
-
 
 def fuzzify_loudness(loudness_difference: float) -> dict[str, float]:
     return {
