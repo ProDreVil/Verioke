@@ -25,12 +25,6 @@ Song Name/
 | `vocals.wav`       | Original vocal track used to generate the reference notes. |
 | `reference.json`   | Generated note reference used for scoring.                 |
 
-## Importing Songs
+## How to Import
 
-Use Verioke's song `importer.py` to generate the required `reference.json` file from the provided vocals.
-
-## Important
-
-Only use songs and media that you have the legal right to use.
-
-This repository does not distribute copyrighted music or artwork.
+Use `src/songs/importer.py` to generate the required `reference.json` file from the provided vocals.
