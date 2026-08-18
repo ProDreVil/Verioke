@@ -1,6 +1,6 @@
 # Songs Directory
 
-This directory is intentionally left empty.
+This directory is intentionally left "empty".
 
 Verioke does **not** include copyrighted songs, album covers, instrumentals, vocals, or lyrics in this repository.
 
